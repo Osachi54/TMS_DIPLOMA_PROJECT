@@ -1,0 +1,10 @@
+1. open web page https://www.saucedemo.com/inventory.html
+2. enter login and password (login = standard_user, password = secret_sauce) and press "Login" button
+3. choose last two items on the page and press "add to cart" buttons
+4. move to cart and check the presence of added items
+5. delete one of the items by pressing the remove button.
+6. check the cart for absence of the removed item
+7. press "checkout" and make sure that you have been moved to your information page
+8. enter first name, last name, zip/postal code and press "continue" button
+9. make sure that we are on the order processing page
+10. press "finish" button. make sure that we are on the homepage logged out
