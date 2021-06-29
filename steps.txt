@@ -7,4 +7,5 @@
 7. press "checkout" and make sure that you have been moved to your information page
 8. enter first name, last name, zip/postal code and press "continue" button
 9. make sure that we are on the order processing page
-10. press "finish" button. make sure that we are on the homepage logged out
+10. press "finish" button. make sure that we are on finished order page
+11. click on "back home" button. check that we are on product page again
