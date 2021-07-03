@@ -55,7 +55,7 @@ def test_createbooking_crud(booking_data):
     print(booking_response.json())
     global new_booking_id
     new_booking_id = booking_response.json()['bookingid']
-    print(new_booking_id)
+    print(f'new id  - {new_booking_id}')
 
 
 def test_partialupdatebooking():
