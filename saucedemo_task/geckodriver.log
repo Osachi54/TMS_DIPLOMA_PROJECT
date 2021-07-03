@@ -1,0 +1,11 @@
+1625318408191	geckodriver	INFO	Listening on 127.0.0.1:49961
+1625318409198	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilew5CKm0"
+1625318409682	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilew5CKm0/search.json.mozlz4", (void 0)))
+1625318411548	Marionette	INFO	Listening on port 36543
+1625318411631	Marionette	WARN	TLS certificate errors will be ignored for this session
+1625318412239	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+1625318415986	Marionette	INFO	Stopped listening on port 36543
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
