@@ -11,6 +11,12 @@ def pytest_addoption(parser):
         default="firefox",
         help="browser can be: chrome or firefox",
     )
+    parser.addoption(
+        "--mode",
+        action="store",
+        default="normal",
+        help="browser mode can be: headless or normal",
+    )
 
 @pytest.fixture(scope="session")
 def driver(request):
