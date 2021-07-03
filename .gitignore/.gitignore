@@ -1,1 +1,3 @@
 #gitignorfile
+venv1/
+venv/
