@@ -21,9 +21,10 @@ def pytest_addoption(parser):
 @pytest.fixture(scope="session")
 def driver(request):
     browser = request.config.getoption("--browser")
+    mode = request.config.getoption("--mode")
 
-    geckodriver_path = "/home/osachi/Desktop/TMS_DIPLOMA_PROJECT/geckodriver"
-    chromedriver_path = "/home/osachi/Desktop/TMS_DIPLOMA_PROJECT/chromedriver"
+    geckodriver_path = "./geckodriver"
+    chromedriver_path = "./chromedriver"
     download_path = "/home/osachi/selenium/downloads"
     f_type = (
         "application/pdf"
@@ -44,7 +45,7 @@ def driver(request):
         profile.set_preference("browser.download.dir", download_path)
         profile.set_preference("pdfjs.disabled", True)
         profile.set_preference("browser.helperApps.neverAsk.saveToDisk", f_type)
-        # options.add_argument("--headless")
+        options.add_argument("--" + mode)
 
         driver = webdriver.Firefox(
             profile, executable_path=geckodriver_path, options=options
@@ -56,6 +57,7 @@ def driver(request):
 
     elif browser == "chrome":
         chrome_options = ChromeOptions()
+        chrome_options.add_argument("--" + mode)
         prefs = {"download.default_directory": download_path}
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-setuid-sandbox")
