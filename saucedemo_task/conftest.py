@@ -23,8 +23,8 @@ def driver(request):
     browser = request.config.getoption("--browser")
     mode = request.config.getoption("--mode")
 
-    geckodriver_path = "./geckodriver"
-    chromedriver_path = "./chromedriver"
+    geckodriver_path = "./saucedemo_task/geckodriver"
+    chromedriver_path = "./saucedemo_task/chromedriver"
     download_path = "/home/osachi/selenium/downloads"
     f_type = (
         "application/pdf"
