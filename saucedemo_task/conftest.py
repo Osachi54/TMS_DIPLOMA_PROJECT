@@ -18,7 +18,7 @@ def pytest_addoption(parser):
         help="browser mode can be: headless or normal",
     )
 
-@pytest.fixture(scope="session")
+@pytest.fixture()
 def driver(request):
     browser = request.config.getoption("--browser")
     mode = request.config.getoption("--mode")
@@ -62,7 +62,6 @@ def driver(request):
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-setuid-sandbox")
         chrome_options.add_experimental_option("prefs", prefs)
-        # chrome_options.add_argument("--headless")
         driver = webdriver.Chrome(
             executable_path=chromedriver_path, options=chrome_options
         )
@@ -94,5 +93,27 @@ def driver(request):
             options=options)
         driver.maximize_window()
         yield driver
-
         driver.quit()
+    # elif browser == 'selenoid_chrome':
+    #     capabilities = {
+    #         "browserName": "crome",
+    #         "browserVersion": "90.0",
+    #         "selenoid:options": {
+    #             "enableVNC": True,
+    #             "enableVideo": False
+    #         }
+    #     }
+    #     chrome_options = ChromeOptions()
+    #     chrome_options.add_argument("--" + mode)
+    #     prefs = {"download.default_directory": download_path}
+    #     chrome_options.add_argument("--no-sandbox")
+    #     chrome_options.add_argument("--disable-setuid-sandbox")
+    #     chrome_options.add_experimental_option("prefs", prefs)
+    #     driver = webdriver.Remote(
+    #         command_executor="http://localhost:4444/wd/hub",
+    #         desired_capabilities=capabilities,
+    #         options=chrome_options)
+    #     driver.maximize_window()
+    #     yield driver
+    #
+    #     driver.quit()
