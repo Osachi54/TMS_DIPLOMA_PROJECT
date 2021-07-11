@@ -17,11 +17,20 @@ def pytest_addoption(parser):
         default="normal",
         help="browser mode can be: headless or normal",
     )
+    parser.addoption(
+        "--video",
+        action="store",
+        default= False,
+        help=f"selenoid video mode can be: {True} or {False}",
+    )
 
 @pytest.fixture(scope="session")
 def driver(request):
     browser = request.config.getoption("--browser")
     mode = request.config.getoption("--mode")
+    video = request.config.getoption("--video")
+    if video == "True":
+        video = True
 
     geckodriver_path = "./geckodriver"
     chromedriver_path = "./chromedriver"
@@ -75,7 +84,7 @@ def driver(request):
             "browserVersion": "88.0",
             "selenoid:options": {
                 "enableVNC": True,
-                "enableVideo": True
+                "enableVideo": video
             }
         }
         options = FirefoxOptions()
@@ -100,7 +109,7 @@ def driver(request):
             "browserVersion": "90.0",
             "selenoid:options": {
                 "enableVNC": True,
-                "enableVideo": True
+                "enableVideo": video
             }
         }
         chrome_options = ChromeOptions()
@@ -117,38 +126,13 @@ def driver(request):
         yield driver
 
         driver.quit()
-    elif browser =='selenoid_firefox':
-        capabilities = {
-            "browserName": "firefox",
-            "browserVersion": "82.0",
-            "selenoid:options": {
-                "enableVNC": True,
-                "enableVideo": True
-            }
-        }
-        options = FirefoxOptions()
-
-        options.set_preference("browser.download.folderList", 2)
-        options.set_preference("browser.download.manager.showWhenStarting", False)
-        options.set_preference("browser.helperApps.alwaysAsk.force", False)
-        options.set_preference("browser.download.useDownloadDir", True)
-        options.set_preference("browser.download.dir", download_path)
-        options.set_preference("pdfjs.disabled", True)
-        options.set_preference("browser.helperApps.neverAsk.saveToDisk", f_type)
-        driver = webdriver.Remote(
-            command_executor="http://localhost:4444/wd/hub/",
-            desired_capabilities=capabilities,
-            options=options)
-        driver.maximize_window()
-        yield driver
-        driver.quit()
     elif browser == 'selenoid_opera':
         capabilities = {
             "browserName": "opera",
             "browserVersion": "76.0",
             "selenoid:options": {
                 "enableVNC": True,
-                "enableVideo": True
+                "enableVideo": video
             }
         }
 
